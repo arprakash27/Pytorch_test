@@ -3,18 +3,19 @@
 
 #get_ipython().run_line_magic('matplotlib', 'inline')
 #%matplotlib inline
-import torch
-import PIL
-from PIL import Image
+
 import torchvision.transforms as transforms
 import numpy as np
 import json
 import requests
+
+import torch
+import PIL
+from PIL import Image
 import matplotlib.pyplot as plt
 import warnings
 import time
 warnings.filterwarnings('ignore')
-#%matplotlib inline
 plt.show()
 
 device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
@@ -39,8 +40,7 @@ for img in imgs_:
 
 from torchvision import datasets, transforms
 start = time.time()
-batch = torch.cat([utils.prepare_input_from_uri(img) for img in imgs_]
-    ).to(device)
+batch = torch.cat([utils.prepare_input_from_uri(img) for img in imgs_]).to(device)
 
 
 with torch.no_grad():
@@ -53,8 +53,8 @@ torch.save(resnet50.state_dict(), 'saved_model.pth')
 
 for img, result in zip(imgs_, results):
     img = PIL.Image.open(img)
-    img.thumbnail((256,256), Image.LANCZOS)
+    img.thumbnail((256, 256), Image.LANCZOS)
     plt.imshow(img)
     plt.show()
     print(result)
-print ("Average Inference time per image:", (end-start)/6, "s")
+print("Average Inference time per image:", (end-start)/6, "s")
