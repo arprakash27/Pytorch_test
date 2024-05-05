@@ -55,7 +55,7 @@ for img, result in zip(imgs_, results):
     img = PIL.Image.open(img)
     # img.thumbnail((256, 256), Image.LANCZOS)
     plt.imshow(img)
-    plt.text(0,0,result)
+    plt.text(0, 0, result)
     plt.show()
     # print(result)
 print("Average Inference time per image:", (end-start)/6, "s")
